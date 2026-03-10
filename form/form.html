@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #eef2f3; padding: 20px; color: #333; }
+        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1200px; margin: 0 auto; }
+        form { background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .cards-container { background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-height: 600px; overflow-y: auto; }
+        .cards-container h3 { margin-top: 0; color: #007BFF; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .form-grid .full { grid-column: 1 / -1; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; color: #555; }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 4px rgba(0,123,255,0.3);
+            outline: none;
+        }
+        input[type=checkbox], input[type=radio] { width: auto; margin-right: 8px; }
+        .form-grid > div:nth-child(odd) { background: #fafafa; padding: 10px; border-radius: 6px; }
+        button { padding: 12px 24px; border: none; border-radius: 6px; background: #007BFF; color: #fff; cursor: pointer; transition: background 0.2s, transform 0.1s; }
+        button:hover { background: #0056b3; transform: translateY(-1px); }
+        button:active { transform: translateY(1px); }
+        button[type=reset] { background: #6c757d; margin-right: 10px; }
+        button[type=reset]:hover { background: #5a6268; }
+        .form-grid select, .form-grid textarea { background: #fff; }
+        .card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 20px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .card h4 { margin: 0 0 10px 0; color: #fff; }
+        .card p { margin: 5px 0; font-size: 14px; word-break: break-word; }
+        .card-item { display: flex; justify-content: space-between; gap: 10px; }
+        .card-label { font-weight: 600; opacity: 0.9; }
+        .card-value { opacity: 1; }
+        .empty-message { text-align: center; color: #999; padding: 40px 20px; }
+        .clear-all { background: #dc3545; margin-top: 10px; width: 100%; padding: 10px; }
+        .clear-all:hover { background: #c82333; }
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .form-grid { display: flex; flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <form id="myForm">
+                <h2>Form</h2>
+                <input type="hidden" name="hidden" value="secret">
+                <div class="form-grid">
+                    <div>
+                        <label for="text">Text</label>
+                        <input type="text" id="text" name="text" placeholder="Enter text">
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter password">
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter email">
+                    </div>
+                    <div>
+                        <label for="number">Number</label>
+                        <input type="number" id="number" name="number" placeholder="Enter number">
+                    </div>
+                    <div>
+                        <label for="tel">Telephone</label>
+                        <input type="tel" id="tel" name="tel" placeholder="Enter phone">
+                    </div>
+                    <div>
+                        <label for="url">URL</label>
+                        <input type="url" id="url" name="url" placeholder="Enter URL">
+                    </div>
+                    <div>
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                    <div>
+                        <label for="month">Month</label>
+                        <input type="month" id="month" name="month">
+                    </div>
+                    <div>
+                        <label for="week">Week</label>
+                        <input type="week" id="week" name="week">
+                    </div>
+                    <div>
+                        <label for="time">Time</label>
+                        <input type="time" id="time" name="time">
+                    </div>
+                    <div>
+                        <label for="datetime">Datetime</label>
+                        <input type="datetime-local" id="datetime" name="datetime">
+                    </div>
+                    <div>
+                        <label for="color">Color</label>
+                        <input type="color" id="color" name="color">
+                    </div>
+                    <div class="full">
+                        <label>Checkboxes</label>
+                        <label><input type="checkbox" name="option1" value="1"> Option 1</label>
+                        <label><input type="checkbox" name="option2" value="2"> Option 2</label>
+                    </div>
+                    <div class="full">
+                        <label>Radio buttons</label>
+                        <label><input type="radio" name="radio" value="a"> A</label>
+                        <label><input type="radio" name="radio" value="b"> B</label>
+                    </div>
+                    <div class="full">
+                        <label for="select">Select</label>
+                        <select id="select" name="select">
+                            <option value="">Choose</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                        </select>
+                    </div>
+                    <div class="full">
+                        <label for="textarea">Textarea</label>
+                        <textarea id="textarea" name="textarea" rows="4" placeholder="Enter your message"></textarea>
+                    </div>
+                    <div>
+                        <label for="file">File</label>
+                        <input type="file" id="file" name="file">
+                    </div>
+                    <div>
+                        <label for="range">Range</label>
+                        <input type="range" id="range" name="range" min="0" max="100">
+                    </div>
+                    <div class="full">
+                        <button type="submit">Submit</button>
+                        <button type="reset">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="cards-container">
+            <h3>📋 Submitted Cards</h3>
+            <div id="cardsDisplay">
+                <div class="empty-message">No submissions yet. Fill and submit the form to see cards here.</div>
+            </div>
+            <button class="clear-all" id="clearAll">Clear All Cards</button>
+        </div>
+    </div>
+</body>
+<script src="form.js"></script>
+</html>
