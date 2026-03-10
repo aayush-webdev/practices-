@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Japan - Tourism Hero Section</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --coral: #f6d0c7;
+            --red: #e95a6f;
+            --cream: #fff3ef;
+            --dark: #2c2c2c;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: var(--cream);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 243, 239, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red), var(--coral));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(233, 90, 111, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: rotate(180deg) scale(1.05);
+        }
+
+        .logo::before {
+            content: '';
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Abstract Background Shapes */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+            z-index: 0;
+        }
+
+        .shape-1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--coral), transparent);
+            top: -200px;
+            right: -100px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(225deg, rgba(233, 90, 111, 0.3), transparent);
+            bottom: -100px;
+            left: -100px;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        .shape-3 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, var(--coral), transparent);
+            top: 50%;
+            left: 20%;
+            animation: float 18s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(30px, -30px) rotate(120deg);
+            }
+            66% {
+                transform: translate(-20px, 20px) rotate(240deg);
+            }
+        }
+
+        /* Hero Container */
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Text Content */
+        .hero-content {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 5rem;
+            line-height: 1.1;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.5rem;
+        }
+
+        .hero-content h1 span {
+            display: block;
+            font-weight: 600;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 500px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--red);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1rem;
+            box-shadow: 0 8px 25px rgba(233, 90, 111, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(233, 90, 111, 0.4);
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Illustration Area */
+        .hero-illustration {
+            position: relative;
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .illustration-wrapper {
+            position: relative;
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Torii Gate Illustration */
+        .torii-gate {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .torii-gate svg {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(233, 90, 111, 0.15));
+        }
+
+        /* Organic Background Shapes for Illustration */
+        .illustration-bg {
+            position: absolute;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .ill-shape-1 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--coral), rgba(246, 208, 199, 0.3));
+            top: -50px;
+            right: -50px;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .ill-shape-2 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(225deg, rgba(233, 90, 111, 0.2), transparent);
+            bottom: -80px;
+            left: -80px;
+            animation: pulse 5s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        /* Water Reflection Effect */
+        .water-reflection {
+            position: absolute;
+            bottom: -100px;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to bottom, transparent, rgba(246, 208, 199, 0.2));
+            border-radius: 50% 50% 0 0;
+            opacity: 0.5;
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: scaleY(1);
+            }
+            50% {
+                transform: scaleY(0.95);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-container {
+                gap: 3rem;
+            }
+
+            .hero-content h1 {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 4%;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .hero-section {
+                padding: 6rem 4% 3rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+                letter-spacing: 0.3rem;
+            }
+
+            .hero-content p {
+                margin: 0 auto 2rem;
+            }
+
+            .hero-illustration {
+                order: -1;
+            }
+
+            .shape-1, .shape-2, .shape-3 {
+                opacity: 0.3;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.75rem;
+            }
+
+            .logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo::before {
+                width: 24px;
+                height: 24px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+                letter-spacing: 0.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 0.875rem 2.5rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo"></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#service">Service</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Background Shapes -->
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        <div class="bg-shape shape-3"></div>
+
+        <div class="hero-container">
+            <!-- Text Content -->
+            <div class="hero-content">
+                <h1>
+                    WELCOME TO
+                    <span>JAPAN</span>
+                </h1>
+                <p>
+                    Experience the perfect harmony of ancient traditions and modern innovation. 
+                    Discover breathtaking landscapes, rich cultural heritage, and warm hospitality 
+                    that will create memories to last a lifetime.
+                </p>
+                <a href="#explore" class="cta-button">
+                    <span>Read More</span>
+                </a>
+            </div>
+
+            <!-- Illustration Area -->
+            <div class="hero-illustration">
+                <div class="illustration-wrapper">
+                    <!-- Background Shapes -->
+                    <div class="illustration-bg ill-shape-1"></div>
+                    <div class="illustration-bg ill-shape-2"></div>
+                    
+                    <!-- Torii Gate SVG -->
+                    <div class="torii-gate">
+                        <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Sun/Moon -->
+                            <circle cx="250" cy="100" r="50" fill="#e95a6f" opacity="0.8"/>
+                            <circle cx="250" cy="100" r="45" fill="#fff3ef" opacity="0.5"/>
+                            
+                            <!-- Mountain Background -->
+                            <path d="M 0 250 Q 150 180 250 200 T 500 250 L 500 400 L 0 400 Z" fill="#f6d0c7" opacity="0.4"/>
+                            <path d="M 50 270 Q 180 200 280 220 T 450 270 L 450 400 L 50 400 Z" fill="#f6d0c7" opacity="0.3"/>
+                            
+                            <!-- Water Base -->
+                            <ellipse cx="250" cy="380" rx="200" ry="15" fill="#e95a6f" opacity="0.15"/>
+                            
+                            <!-- Torii Gate Structure -->
+                            <!-- Top Horizontal Beam (Kasagi) -->
+                            <rect x="80" y="200" width="340" height="18" rx="9" fill="#e95a6f"/>
+                            <rect x="75" y="200" width="350" height="12" rx="6" fill="#e95a6f" opacity="0.7"/>
+                            
+                            <!-- Second Horizontal Beam (Nuki) -->
+                            <rect x="100" y="240" width="300" height="14" rx="7" fill="#e95a6f"/>
+                            
+                            <!-- Left Pillar -->
+                            <rect x="120" y="210" width="35" height="170" rx="4" fill="#e95a6f"/>
+                            <rect x="125" y="210" width="25" height="170" rx="3" fill="#c74456"/>
+                            
+                            <!-- Right Pillar -->
+                            <rect x="345" y="210" width="35" height="170" rx="4" fill="#e95a6f"/>
+                            <rect x="350" y="210" width="25" height="170" rx="3" fill="#c74456"/>
+                            
+                            <!-- Decorative Rope (Shimenawa) -->
+                            <path d="M 140 235 Q 250 250 360 235" stroke="#2c2c2c" stroke-width="3" fill="none" opacity="0.3"/>
+                            <circle cx="180" cy="238" r="4" fill="#2c2c2c" opacity="0.3"/>
+                            <circle cx="250" cy="245" r="4" fill="#2c2c2c" opacity="0.3"/>
+                            <circle cx="320" cy="238" r="4" fill="#2c2c2c" opacity="0.3"/>
+                            
+                            <!-- Water Reflection -->
+                            <g opacity="0.25">
+                                <rect x="120" y="385" width="35" height="15" rx="2" fill="#e95a6f"/>
+                                <rect x="345" y="385" width="35" height="15" rx="2" fill="#e95a6f"/>
+                                <rect x="100" y="375" width="300" height="8" rx="4" fill="#e95a6f"/>
+                            </g>
+                            
+                            <!-- Birds -->
+                            <path d="M 350 130 Q 355 125 360 130" stroke="#2c2c2c" stroke-width="2" fill="none" opacity="0.4"/>
+                            <path d="M 365 130 Q 370 125 375 130" stroke="#2c2c2c" stroke-width="2" fill="none" opacity="0.4"/>
+                            <path d="M 320 150 Q 325 145 330 150" stroke="#2c2c2c" stroke-width="2" fill="none" opacity="0.3"/>
+                        </svg>
+                    </div>
+                    
+                    <!-- Water Reflection -->
+                    <div class="water-reflection"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
