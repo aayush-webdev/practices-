@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navbar</title>
+    <style>
+        *{padding: 0%;
+        margin: 0%;
+            box-sizing: border-box;
+
+    }
+    nav{
+        background-color: #333;
+        color: #fff;
+        display: flex;
+        justify-content: space-around;
+        height: 10vh;
+        align-items: center;
+    }
+    nav ul{
+        list-style: none;
+    }
+    nav ul li{
+        display: inline;
+        padding: 30px;
+        cursor: pointer;
+    }
+    nav ul li a{
+        text-decoration: none;
+        color: #fff;
+    }
+    nav ul li a:hover{
+        color: #d81010;
+        text-decoration: underline;
+    }
+    nav div{
+        width: 20%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    nav div img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* border-radius: 50%; */
+    }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <img src="logo.png" alt="logo">
+        </div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Products</a></li>
+        </ul>
+    </nav>
+    <input type="text" placeholder="Write anything">
+    <h1>total characters left : <span>20</span></h1>
+</body>
+<script>
+let input = document.querySelector("input")
+let span = document.querySelector("span")
+input.addEventListener("input", function(e){
+    let left = 20 - e.target.value.length
+    span.textContent = left
+    if(left < 0 ){
+        span.style.color = "red"
+    }else{
+        span.style.color = "green"
+    }
+})
+</script>
+</html>
