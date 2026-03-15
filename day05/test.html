@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>A</h1>
+</body>
+<script>
+    let h1 = document.querySelector("h1"); 
+    window.addEventListener("keydown", (e)=>{
+        if(e.key === "Backspace"){
+            h1.textContent = h1.textContent.slice(0, -1);
+
+        }
+        else if (e.key.length === 1) {
+       h1.textContent =  e.key + h1.textContent
+        }
+    })
+</script>
+<script src="script.js"></script>
+</html>
