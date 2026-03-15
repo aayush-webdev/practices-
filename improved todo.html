@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f4f4f4;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            width: 320px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 8px;
+        }
+
+        input {
+            flex: 1;
+            padding: 8px;
+        }
+
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        ul {
+            margin-top: 15px;
+            list-style: none;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .delete-btn {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Todo List</h2>
+
+        <div class="input-area">
+            <input id="taskInput" placeholder="Enter task">
+            <button id="addBtn">Add</button>
+        </div>
+
+        <ul id="todoList"></ul>
+
+    </div>
+
+    <script>
+        const taskInput = document.querySelector("#taskInput");
+        const addBtn = document.querySelector("#addBtn");
+        const todoList = document.querySelector("#todoList");
+
+        // ADD TASK FUNCTION
+        function addTask() {
+
+            const taskText = taskInput.value.trim();
+
+            if (taskText === "") return;
+
+            const li = document.createElement("li");
+
+            li.innerHTML = `${taskText}<button class="delete-btn">Delete</button>`;
+            todoList.appendChild(li);
+            taskInput.value = "";
+        }
+
+
+        // BUTTON CLICK
+        addBtn.addEventListener("click", addTask);
+
+        taskInput.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                addTask();
+            }
+        });
+
+
+        // EVENT DELEGATION FOR DELETE
+        todoList.addEventListener("click", function (e) {
+
+            if (e.target.classList.contains("delete-btn")) {
+                e.target.parentElement.remove();
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
